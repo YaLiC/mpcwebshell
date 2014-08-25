@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<title>MPC Web Shell</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="control('state');">
+
+<script type="text/javascript">
+function control(command) {
+	var state = document.getElementById('state');
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'rpc.php?action=' + command, true);
+	xhr.onreadystatechange = function() {
+	if (xhr.readyState != 4) return;
+		state.innerHTML = xhr.responseText;
+	}
+	state.innerHTML = '...запрос...';
+	xhr.send(null);
+}
+setInterval('control("s")', 15000);
+</script>
+
+<h1>Панель управления музыкальным плеером</h1>
+
+<div id="state" onclick="control('current')">...состояние плеера...</div>
+<hr/><br/>
+<nav>
+<button class="large color blue button" onclick="control('play')"><span class="tooltip" data-tooltip="Воспроизведение">&#9658;</span></button>
+<button class="large color green button" onclick="control('pause')"><span class="tooltip" data-tooltip="Приостановить">|&nbsp;|</spa></button>
+<button class="large color red button" onclick="control('stop')"><span class="tooltip" data-tooltip="Остановить">[&nbsp;]</span></button>
+<br/><br/>
+<button class="button" onclick="control('prev')"><span class="tooltip" data-tooltip="Предыдущий пункт списка воспроизведения">&larr;&nbsp;&bull;</span></button>
+<button class="button" onclick="control('seek-')"><span class="tooltip" data-tooltip="Прокрутить назад">&laquo;&laquo;&laquo;</span></button>
+<button class="button" onclick="control('seek+')"><span class="tooltip" data-tooltip="Прокрутить вперёд">&raquo;&raquo;&raquo;</span></button>
+<button class="button" onclick="control('next')"><span class="tooltip" data-tooltip="Следующий пункт списка вопроизведения">&bull;&nbsp;&rarr;</button>
+<br/><br/>
+<button class="small button" onclick="control('random')"><span class="tooltip" data-tooltip="В случайном порядке">&sup2;.&sup1;.&sup3;</span></button>
+<button class="small button" onclick="control('repeat')"><span class="tooltip" data-tooltip="Повторять список">&equiv;&infin;</span></button>
+<button class="small button" onclick="control('single')"><span class="tooltip" data-tooltip="Повторять пункт списка">&minus;&infin;</span></button>
+<button class="small button" onclick="control('shuffle')"><span class="tooltip" data-tooltip="Перемешать пункты списка">&asymp;</span></button>
+<button class="small button" onclick="control('consume')"><span class="tooltip" data-tooltip="Убирать пункты после окончания">&times;&rarr;</span></button>
+<br/><br/>
+<ul class="button-group">
+	<li><button class="small button" onclick="control('volume30')"><span class="tooltip" data-tooltip="Громкость">30%</span></button></li>
+	<li><button class="small button" onclick="control('volume50')">50%</button></li>
+	<li><button class="small button" onclick="control('volume60')">60%</button></li>
+	<li><button class="small button" onclick="control('volume70')">70%</button></li>
+	<li><button class="small button" onclick="control('volume80')">80%</button></li>
+	<li><button class="small button" onclick="control('volume90')">90%</button></li>
+	<li><button class="small button" onclick="control('volume100')">100%</button></li>
+</ul>
+</nav>
+
+<br/><hr/>
+
+</body>
+</html>
