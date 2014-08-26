@@ -25,8 +25,6 @@ setInterval('control("s")', 15000);
 
 <h1>Панель управления музыкальным плеером</h1>
 
-<div id="state" onclick="control('current')">...состояние плеера...</div>
-<hr/><br/>
 <nav>
 <button class="large color blue button" onclick="control('play')"><span class="tooltip" data-tooltip="Воспроизведение">&#9658;</span></button>
 <button class="large color green button" onclick="control('pause')"><span class="tooltip" data-tooltip="Приостановить">|&nbsp;|</spa></button>
@@ -44,17 +42,20 @@ setInterval('control("s")', 15000);
 <button class="small button" onclick="control('consume')"><span class="tooltip" data-tooltip="Убирать пункты после окончания">&times;&rarr;</span></button>
 <br/><br/>
 <ul class="button-group">
-	<li><button class="small button" onclick="control('volume30')"><span class="tooltip" data-tooltip="Громкость">30%</span></button></li>
+	<li><button class="small button" onclick="control('volumeminus')"><span class="tooltip" data-tooltip="Громкость -5">&minus;</span></button></li>
+	<li><button class="small button" onclick="control('volume30')">30%</button></li>
 	<li><button class="small button" onclick="control('volume50')">50%</button></li>
-	<li><button class="small button" onclick="control('volume60')">60%</button></li>
 	<li><button class="small button" onclick="control('volume70')">70%</button></li>
 	<li><button class="small button" onclick="control('volume80')">80%</button></li>
 	<li><button class="small button" onclick="control('volume90')">90%</button></li>
 	<li><button class="small button" onclick="control('volume100')">100%</button></li>
+	<li><button class="small button" onclick="control('volumeplus')"><span class="tooltip" data-tooltip="Громкость +5">&plus;</span></button></li>
 </ul>
 </nav>
 
-<br/><hr/>
+<hr/>
+
+<div id="state" onclick="control('current')">...состояние плеера...</div>
 
 </body>
 </html>

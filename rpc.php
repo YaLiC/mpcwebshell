@@ -35,15 +35,18 @@ case "volume80":
 case "volume70":
         exec('mpc volume 70');
         break;
-case "volume60":
-        exec('mpc volume 60');
-        break;
 case "volume50":
         exec('mpc volume 50');
         break;
 case "volume30":
         exec('mpc volume 30');
         break;
+case "volumeminus":
+	exec('mpc volume -5');
+	break;
+case "volumeplus":
+	exec('mpc volume +5');
+	break;
 }
 
 echo exec('mpc')."<br/></br>";
