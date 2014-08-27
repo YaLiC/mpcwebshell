@@ -3,6 +3,7 @@
 <head>
 	<title>MPC Web Shell</title>
 	<meta charset="utf-8">
+	<link rel="shortcut icon" href="/mpd-icon.png">
 	<link rel="stylesheet" href="style.css">
 </head>
 
@@ -55,7 +56,9 @@ setInterval('control("s")', 15000);
 
 <hr/>
 
-<div id="state" onclick="control('current')">...состояние плеера...</div>
+<output id="state" onclick="control('current')">...состояние плеера...</output>
+
+<footer>Свободно для всех, на <a href="https://github.com/YaLiC/mpcwebshell">GitHub</a>.</footer>
 
 </body>
 </html>
