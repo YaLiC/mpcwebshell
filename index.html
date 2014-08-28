@@ -27,30 +27,30 @@ setInterval('control("s")', 15000);
 <h1>Панель управления музыкальным плеером</h1>
 
 <nav>
-<button class="large color blue button" onclick="control('play')"><span class="tooltip" data-tooltip="Воспроизведение">&#9658;</span></button>
-<button class="large color green button" onclick="control('pause')"><span class="tooltip" data-tooltip="Приостановить">|&nbsp;|</spa></button>
-<button class="large color red button" onclick="control('stop')"><span class="tooltip" data-tooltip="Остановить">[&nbsp;]</span></button>
+<button class="large color blue button htooltip" onclick="control('play')">&#9658;<span>Воспроизведение</span></button>
+<button class="large color green button htooltip" onclick="control('pause')">|&nbsp;|<span>Приостановить</span></button>
+<button class="large color red button htooltip" onclick="control('stop')">[&nbsp;]<span>Остановить</span></button>
 <br/><br/>
-<button class="button" onclick="control('prev')"><span class="tooltip" data-tooltip="Предыдущий пункт списка воспроизведения">&larr;&nbsp;&bull;</span></button>
-<button class="button" onclick="control('seek-')"><span class="tooltip" data-tooltip="Прокрутить назад">&laquo;&laquo;&laquo;</span></button>
-<button class="button" onclick="control('seek+')"><span class="tooltip" data-tooltip="Прокрутить вперёд">&raquo;&raquo;&raquo;</span></button>
-<button class="button" onclick="control('next')"><span class="tooltip" data-tooltip="Следующий пункт списка вопроизведения">&bull;&nbsp;&rarr;</button>
+<button class="button htooltip" onclick="control('prev')">&larr;&nbsp;&bull;<span>Предыдущий пункт списка воспроизведения</span></button>
+<button class="button htooltip" onclick="control('seek-')">&laquo;&laquo;&laquo;<span>Прокрутить назад</span></button>
+<button class="button htooltip" onclick="control('seek+')">&raquo;&raquo;&raquo;<span>Прокрутить вперёд</span></button>
+<button class="button htooltip" onclick="control('next')">&bull;&nbsp;&rarr;<span>Следующий пункт списка вопроизведения</span></button>
 <br/><br/>
-<button class="small button" onclick="control('random')"><span class="tooltip" data-tooltip="В случайном порядке">&sup2;.&sup1;.&sup3;</span></button>
-<button class="small button" onclick="control('repeat')"><span class="tooltip" data-tooltip="Повторять список">&equiv;&infin;</span></button>
-<button class="small button" onclick="control('single')"><span class="tooltip" data-tooltip="Повторять пункт списка">&minus;&infin;</span></button>
-<button class="small button" onclick="control('shuffle')"><span class="tooltip" data-tooltip="Перемешать пункты списка">&asymp;</span></button>
-<button class="small button" onclick="control('consume')"><span class="tooltip" data-tooltip="Убирать пункты после окончания">&times;&rarr;</span></button>
+<button class="small button htooltip" onclick="control('random')">&sup2;.&sup1;.&sup3;<span>В случайном порядке</span></button>
+<button class="small button htooltip" onclick="control('repeat')">&equiv;&infin;<span>Повторять список</span></button>
+<button class="small button htooltip" onclick="control('single')">&minus;&infin;<span>Повторять пункт списка</span></button>
+<button class="small button htooltip" onclick="control('shuffle')">&darr;&equiv;&uarr;<span>Перемешать пункты списка</span></button>
+<button class="small button htooltip" onclick="control('consume')">&times;&rarr;<span>Убирать пункты после окончания</span></button>
 <br/><br/>
 <ul class="button-group">
-	<li><button class="small button" onclick="control('volumeminus')"><span class="tooltip" data-tooltip="Громкость -5">&minus;</span></button></li>
+	<li><button class="small button htooltip" onclick="control('volumeminus')"><span>Громкость -5</span>&minus;</button></li>
 	<li><button class="small button" onclick="control('volume30')">30%</button></li>
 	<li><button class="small button" onclick="control('volume50')">50%</button></li>
 	<li><button class="small button" onclick="control('volume70')">70%</button></li>
 	<li><button class="small button" onclick="control('volume80')">80%</button></li>
 	<li><button class="small button" onclick="control('volume90')">90%</button></li>
 	<li><button class="small button" onclick="control('volume100')">100%</button></li>
-	<li><button class="small button" onclick="control('volumeplus')"><span class="tooltip" data-tooltip="Громкость +5">&plus;</span></button></li>
+	<li><button class="small button htooltip" onclick="control('volumeplus')"><span>Громкость +5</span>&plus;</button></li>
 </ul>
 </nav>
 
@@ -58,7 +58,7 @@ setInterval('control("s")', 15000);
 
 <output id="state" onclick="control('current')">...состояние плеера...</output>
 
-<footer>Свободно для всех, на <a href="https://github.com/YaLiC/mpcwebshell">GitHub</a>.</footer>
+<footer>Copyleft: GNU GPL v2. &bull; Developed by: <a href="https://github.com/YaLiC">YaLiC</a>. &bull; View and download the code, click here: <a href="https://github.com/YaLiC/mpcwebshell">GitHub</a>.</footer>
 
 </body>
 </html>

@@ -44,15 +44,15 @@ footer {
 	position:absolute;
 	left:0; right:0; bottom:0px;
 	margin:0; padding:5px;
-	font-size:10px; color:#333; text-align:left;
+	font-size:10px; color:#666; text-align:left;
 	background-color:#eee;
 	border-top:1px solid #ccc;
 	box-shadow:0 0 10px #ddd;
 	text-shadow: 0 1px 0 rgba(255,255,255, .9);
 }
 
-output {display:block;}
-#state {
+output#state {
+	display:block;
 	width:500px; min-height:50px;
 	margin:0 auto; padding:20px; margin-top:20px; 
 	border:1px solid #ccc; border-radius:5px;
@@ -66,32 +66,79 @@ output {display:block;}
 	cursor:pointer;
 }
 
+/* */
 .tooltip {
-/*border-bottom: 1px dotted #0077AA;
-cursor: help;*/
+/*	border-bottom: 1px dotted #0077AA;
+	cursor: help;
+	color: #0077AA;*/
 }
+		
+.tooltip:hover {
+	color: #0099CC;
+}
+		
+.tooltip:after {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 8px 8px 8px 0px;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+	color: #fff;
+	content: attr(data-tooltip);
+	margin-top: -24px;
+	opacity: 0;
+	padding: 3px 7px;
+	position: absolute;
+	visibility: hidden;
+	text-shadow: 0 0 0 #000;		
+	transition: all 0.4s ease-in-out;
+	-moz-transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+}
+		
+.tooltip:hover:after {
+	opacity: 1;
+	visibility: visible;
+}
+		
+.htooltip, .htooltip:visited, .tooltip:active {
+	color: #0077AA;
+	text-decoration: none;
+}
+		
+.htooltip:hover {
+	color: #0099CC;
+}
+		
+.htooltip span {
+	background-color: rgba(0,0,0, 0.8);
+	border-radius: 15px 15px 15px 0px;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+	color: #fff;
+	margin-left: 2px;
+	margin-top: -30px;
+	opacity: 0;
+	padding: 5px 10px;
+	position: absolute;
+	text-decoration: none;
+	visibility: hidden;
+	z-index: 10;
+	-moz-transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+	-webkit-transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+	-o-transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+	-ms-transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+	transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+	text-shadow: 0 0 0 #000;
+}
+		
+.htooltip:hover span {
+	position: absolute;
+	opacity: 1;
+	visibility: visible;
+}
+		
 
-.tooltip::after {
-background: rgba(0,0,0,0.8);
-border-radius: 10px 10px 10px 0px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-color: #fff;
-font: normal 10pt sans-serif;
-text-shadow:0 0 0 #000;
-content: attr(data-tooltip);
-margin-top: -24px;
-opacity: 0;
-padding: 5px 8px;
-position: absolute;
-visibility: hidden;
-transition: all 0.3s ease-in-out;
-}
-        
-.tooltip:hover::after {
-opacity:1;
-visibility:visible;
-}
-
+/* */
 .button{
 display: inline-block;
 *display: inline;
