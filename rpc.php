@@ -1,7 +1,9 @@
 <?php
 
 $action	= isset($_GET['action'])? filter_var($_GET['action'], FILTER_SANITIZE_ENCODED) : false;
+$npp = isset($_GET['npp'])? filter_var($_GET['npp'], FILTER_SANITIZE_ENCODED) : false;
 
+if ($action == "playn" && $npp) {exec('mpc play '.$npp);}
 if ($action == "play") {exec('mpc play');}
 if ($action == "pause") {exec('mpc pause');}
 if ($action == "stop") {exec('mpc stop');}
@@ -50,6 +52,7 @@ case "volumeplus":
 }
 
 echo exec('mpc')."<br/></br>";
-echo exec('mpc current -f "[#&mdash; %name% #&mdash;<br/> %title%]"');
+echo exec('mpc current -f "[## %position% ##<br/>] & [[%name%] | [%album%]] & [#<br/>%artist% #&mdash; %title%]"');
+
 ?>
 

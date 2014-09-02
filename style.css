@@ -30,6 +30,28 @@ nav {
 	background-image:     -ms-linear-gradient(top, rgba(200,200,250,0.1), rgba(150,150,255,0.2));
 }
 
+details {
+	width:500px;
+	margin:0 auto; margin-top:30px; margin-bottom:100px; padding:20px;
+	border:1px solid #ccc; border-radius:3px; 
+	background:#fefefe;
+	box-shadow:0 0 10px #ddd;
+	opacity:0.3;
+	transition:all 0.8s ease-in-out;
+}
+details:hover {opacity:1;}
+
+summary {cursor:pointer; font-size:20px;}
+
+details pre {
+	overflow-y:scroll; overflow-x:hidden;
+	margin:0; margin-top:20px; padding:0;
+	height:300px;
+	border-top:1px dotted #ccc; border-bottom:1px dotted #ccc;
+	text-align:left; font-size:10px;
+}
+
+
 hr {
 	margin:0 auto;
 	border:0;
@@ -41,7 +63,7 @@ hr {
 }
 
 footer {
-	position:absolute;
+	position:fixed;
 	left:0; right:0; bottom:0px;
 	margin:0; padding:5px;
 	font-size:10px; color:#666; text-align:left;
@@ -52,8 +74,8 @@ footer {
 }
 
 output#state {
-	display:block;
-	width:500px; min-height:50px;
+	display:block; overflow:hidden;
+	width:500px; height:100px;
 	margin:0 auto; padding:20px; margin-top:20px; 
 	border:1px solid #ccc; border-radius:5px;
 	box-shadow:0 0 15px #ddd;
