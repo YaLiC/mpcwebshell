@@ -1,4 +1,6 @@
-<!doctype html>
+<?php
+exec('mpc playlist | cat -n > /tmp/mpc.plst');
+?><!doctype html>
 <html>
 <head>
 	<title>MPC Web Shell</title>
@@ -12,16 +14,22 @@
 <script type="text/javascript">
 function control(command) {
 	var state = document.getElementById('state');
+	var npp = document.getElementById('npp').value;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'rpc.php?action=' + command, true);
+
+	if (command == "playn") {
+		xhr.open('GET', 'rpc.php?action=playn&npp=' + npp, true);
+	} else {
+		xhr.open('GET', 'rpc.php?action=' + command, true);
+	}
 	xhr.onreadystatechange = function() {
-	if (xhr.readyState != 4) return;
+		if (xhr.readyState != 4) return;
 		state.innerHTML = xhr.responseText;
 	}
-	state.innerHTML = '...запрос...';
+	state.innerHTML = '...';
 	xhr.send(null);
 }
-setInterval('control("s")', 15000);
+setInterval('control("state")', 15000);
 </script>
 
 <h1>Панель управления музыкальным плеером</h1>
@@ -56,9 +64,21 @@ setInterval('control("s")', 15000);
 
 <hr/>
 
-<output id="state" onclick="control('current')">...состояние плеера...</output>
+<output id="state" onclick="control('current')">...</output>
 
-<footer>Copyleft: GNU GPL v2. &bull; Developed by: <a href="https://github.com/YaLiC">YaLiC</a>. &bull; View and download the code, click here: <a href="https://github.com/YaLiC/mpcwebshell">GitHub</a>.</footer>
+<details>
+	<summary>&equiv;</summary>
+	<pre>
+<?php echo file_get_contents('/tmp/mpc.plst'); ?>
+	</pre>
+	<div style="margin-top:10px; text-align:left;">
+		<span>№:</span>
+		<input id="npp" type="text" pattern="[0-9]{,3}" placeholder="123" style="width:30px;" />
+		<button class="small button color blue" onclick="control('playn')">&#9658;</button>
+	</div>
+</details>
+
+<footer>Copyleft: GNU GPL v2. &bull; Developed by: <a href="https://github.com/YaLiC">YaLiC</a>. &bull; View and download the code, click here: <a href="https://github.com/YaLiC/mpcwebshell">GitHub</a>. &bull; <?php echo exec('mpc version'); ?></footer>
 
 </body>
 </html>
