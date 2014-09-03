@@ -1,17 +1,20 @@
 <?php
 exec('mpc playlist | cat -n > /tmp/mpc.plst');
 ?><!doctype html>
-<html>
+<html lang="ru">
 <head>
-	<title>MPC Web Shell</title>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" href="/mpd-icon.png">
-	<link rel="stylesheet" href="style.css">
+	<meta name="author" content="YaLiC">
+	<meta name="description" content="Веб-интерфейс для MPD. Веб-оболочка для MPC">
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title>MPC Web Shell</title>
+	<link rel="shortcut icon" href="/mpd-icon.png" />
+	<link rel="stylesheet" href="style.css" />
 </head>
 
 <body onload="control('state');">
 
-<script type="text/javascript">
+<script>
 function control(command) {
 	var state = document.getElementById('state');
 	var npp = document.getElementById('npp').value;
@@ -32,7 +35,9 @@ function control(command) {
 setInterval('control("state")', 15000);
 </script>
 
-<h1>Панель управления музыкальным плеером</h1>
+<header>
+	<h1>Панель управления музыкальным плеером</h1>
+</header>
 
 <nav>
 <button class="large color blue button htooltip" onclick="control('play')">&#9658;<span>Воспроизведение</span></button>
@@ -62,8 +67,9 @@ setInterval('control("state")', 15000);
 </ul>
 </nav>
 
-<hr/>
+<hr />
 
+<div role="main">
 <output id="state" onclick="control('current')">...</output>
 
 <details>
@@ -77,6 +83,7 @@ setInterval('control("state")', 15000);
 		<button class="small button color blue" onclick="control('playn')">&#9658;</button>
 	</div>
 </details>
+</div>
 
 <footer>Copyleft: GNU GPL v2. &bull; Developed by: <a href="https://github.com/YaLiC">YaLiC</a>. &bull; View and download the code, click here: <a href="https://github.com/YaLiC/mpcwebshell">GitHub</a>. &bull; <?php echo exec('mpc version'); ?></footer>
 
