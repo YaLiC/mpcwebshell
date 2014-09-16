@@ -108,15 +108,15 @@ footer {
 	font-weight:bold;
 	text-shadow: 0 1px 0 rgba(255,255,255, .9);
 }
-#file {background:url(i/file.png) no-repeat left center;}
-#album {background:url(i/album.png) no-repeat left center;}
-#artist {background:url(i/artist.png) no-repeat left center;}
-#track {background:url(i/track.png) no-repeat left center;}
+#file {background:url(img/file.png) no-repeat left center;}
+#album {background:url(img/album.png) no-repeat left center;}
+#artist {background:url(img/artist.png) no-repeat left center;}
+#track {background:url(img/track.png) no-repeat left center;}
 
 #progbox {text-align:center;}
 #timestart, #timeend {font-size:13px;}
 #timestart:before {font-size:12px; content:"[";}
-#timestart:after {	font-size:12px; content:"]";}
+#timestart:after {font-size:12px; content:"]";}
 #timeend:before {font-size:12px; content:"[";}
 #timeend:after {font-size:12px; content:"]";}
 #switch, #of {font-size:12px;}
