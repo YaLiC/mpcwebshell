@@ -1,58 +1,84 @@
-<?php
+﻿<?php
+/*** MPC Web Shell rpc.php ***/
 
-$action	= isset($_GET['action'])? filter_var($_GET['action'], FILTER_SANITIZE_ENCODED) : false;
-$npp = isset($_GET['npp'])? filter_var($_GET['npp'], FILTER_SANITIZE_ENCODED) : false;
+include("config.php");
+require("auth.php");
 
-if ($action == "playn" && $npp) {exec('mpc play '.$npp);}
-if ($action == "play") {exec('mpc play');}
-if ($action == "pause") {exec('mpc pause');}
-if ($action == "stop") {exec('mpc stop');}
-if ($action == "next") {exec('mpc next');}
-if ($action == "prev") {exec('mpc prev');}
-if ($action == "repeat") {exec('mpc repeat');}
-if ($action == "single") {exec('mpc single');}
-if ($action == "consume") {exec('mpc consume');}
-if ($action == "random") {exec('mpc random');}
-if ($action == "shuffle") {exec('mpc shuffle');}
+$mpc = "mpc -q -h " . $CONFIG["host"] . " ";
+$comand	= isset($_GET['cmnd'])? filter_var($_GET['cmnd'], FILTER_SANITIZE_SPECIAL_CHARS) : false;
+$ptpl	= isset($_GET['ptpl'])? filter_var($_GET['ptpl'], FILTER_SANITIZE_SPECIAL_CHARS) : false;
+$findadd	= isset($_GET['fndd'])? filter_var($_GET['fndd'], FILTER_SANITIZE_SPECIAL_CHARS) : false;
+$panopl	= isset($_GET['pnpl'])? filter_var($_GET['pnpl'], FILTER_SANITIZE_NUMBER_INT) : false;
+$volume	= isset($_GET['vlm'])? filter_var($_GET['vlm'], FILTER_SANITIZE_NUMBER_INT) : false;
+$seek	= isset($_GET['sk'])? filter_var($_GET['sk'], FILTER_SANITIZE_SPECIAL_CHARS) : false;
 
-switch ($action) {
-case "seek-":
-        exec('mpc seek -');
-        break;
-case "seek+":
-        exec('mpc seek +');
-        break;
+if ($comand == "status") {
+	exec("mpc status",$stts);
+	$tmp = str_replace(array(":", "%"), "", explode(" ", preg_replace('/\s+/',' ',$stts[count($stts)-1])));
+	for ($i=0; $i<count($tmp); $i++) { $status[$tmp[$i]] = $tmp[$i+1]; $i++; }
+
+	if (count($stts) == 3) {
+		$tmp = str_replace(array("[", "]", "(", ")", "#", "%"), "", explode(" ", preg_replace('/\s+/',' ',$stts[1]) ));
+		$status["switch"] = $tmp[0];
+		$status["of"] = explode("/",$tmp[1]);
+		$status["time"] = explode("/",$tmp[2]);
+		$status["progress"] = $tmp[3];
+	} else {
+		$status["switch"] = "stop";
+		$status["of"][0] = "0"; $status["of"][1] = "0";
+		$status["time"][0] = "0:00"; $status["time"][1] = "0:00";
+		$status["progress"] = "0";
+	}
+
+	exec($mpc . "current -f %file%#=%name%#=%position%#=%time%#=%album%#=%artist%#=%title%", $crr);
+	$current = explode("=", $crr[0]);
+	$status["current"] = $current;
+
+	echo json_encode($status);
 }
 
-switch ($action) {
-case "volume100":
-	exec('mpc volume 100');
-	break;
-case "volume90":
-        exec('mpc volume 90');
-        break;
-case "volume80":
-        exec('mpc volume 80');
-        break;
-case "volume70":
-        exec('mpc volume 70');
-        break;
-case "volume50":
-        exec('mpc volume 50');
-        break;
-case "volume30":
-        exec('mpc volume 30');
-        break;
-case "volumeminus":
-	exec('mpc volume -5');
-	break;
-case "volumeplus":
-	exec('mpc volume +5');
-	break;
+if ($comand == "playlist") {
+	exec($mpc . "playlist",$playlist);
+	for ($i=0;$i<count($playlist);$i++) {
+		$n = $i + 1;
+		echo '<div class="plstitem" data-item="' .$n. '"><span class="number">' . $n . '</span>. <span class="text">' . $playlist[$i] . '</span></div>';
+	}
 }
 
-echo exec('mpc')."<br/></br>";
-echo exec('mpc current -f "[## %position% ##<br/>] & [[%name%] | [%album%]] & [#<br/>%artist% #&mdash; %title%]"');
+if ($comand == "lsplst") {
+	exec($mpc . "lsplaylists",$playlists);
+	echo '<option>...</option>';
+	for ($i=0;$i<count($playlists);$i++) {
+		echo '<option>' . $playlists[$i] . '</option>';
+	}
+}
+
+if ($panopl) {exec($mpc . "play " . $panopl);}
+if ($ptpl) {exec($mpc . "load " . $ptpl);}
+if ($findadd) {exec($mpc . "findadd any " . addcslashes($findadd," ") );}
+if ($volume) {exec($mpc . "volume " . $volume);}
+if ($seek) {
+	$seek   = str_replace("m", "-", $seek);
+	$seek   = str_replace("p", "+", $seek);
+	exec($mpc . "seek " . $seek . "%");
+}
+
+switch($comand){
+	case 'play':
+	case 'pause':
+	case 'stop':
+	case 'next':
+	case 'prev':
+	case 'crop':
+	case 'clear':
+	case 'shuffle':
+	case 'repeat':
+	case 'single':
+	case 'random':
+	case 'consume':
+	case 'update': exec("mpc -q \"$comand\""); break;
+	case 'add': break;
+	default: break;
+}
 
 ?>
-
