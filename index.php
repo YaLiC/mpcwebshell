@@ -2,15 +2,17 @@
 include("config.php");
 require("auth.php");
 ?><!doctype html>
-<html lang="ru">
+<html>
 <head>
-	<meta charset="utf-8">
-	<meta name="author" content="YaLiC">
-	<meta name="description" content="Веб-интерфейс для MPD. Веб-оболочка для MPC">
 	<title>MPC Web Shell</title>
-	<link rel="shortcut icon" href="favicon.ico" />
-	<link rel="stylesheet" href="glyphicons/glyphicons.css" />
-	<link rel="stylesheet" href="style.css" />
+	<meta charset="utf-8">
+	<meta name="copyright" content="Copyright © 2014 ilya Balduev <ilya@balduev.name> (MIT License)">
+	<meta name="author" content="ilya Balduev aka YaLiC">
+	<meta name="description" content="Веб-интерфейс для MPD. Веб-оболочка для MPC">
+	<link href="favicon.ico" type="image/x-icon" rel="shortcut icon">
+	<link href="favicon.ico" type="image/x-icon" rel="icon">
+	<link rel="stylesheet" href="glyphicons/glyphicons.css">
+	<link rel="stylesheet" href="style.css">
 	<script src="jquery-2.1.1.min.js"></script>
 	<script src="script.js"></script>
 </head>
@@ -79,7 +81,7 @@ require("auth.php");
 </div><!-- /player -->
 
 
-<footer>Copyleft: GNU GPL v2. &bull; Developed by: <a href="https://github.com/YaLiC">YaLiC</a>. &bull; View and download the code, click here: <a href="https://github.com/YaLiC/mpcwebshell">GitHub</a>. &bull; <?php echo exec('mpc version'); ?></footer>
+<footer>Copyright&nbsp;&copy;&nbsp;2014&nbsp;ilya&nbsp;Balduev&nbsp;(MIT&nbsp;License). &bull; View and download the code, click here: <a href="https://github.com/YaLiC/mpcwebshell">GitHub</a>. &bull; <?php echo exec('mpc version'); ?></footer>
 
 </body>
 </html>
